@@ -5,4 +5,82 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>List of user</h2>
+<div class="form-horizontal">
+    <div class="row text-center">
+        <div class="col-md-2">
+            <h4>First Name</h4>
+        </div>
+        <div class="col-md-2">
+            <h4>Last Name</h4>
+        </div>
+        <div class="col-md-2">
+            <h4>Login</h4>
+        </div>
+        <div class="col-md-2">
+            <h4>Email</h4>
+        </div>
+        <div class="col-md-1">
+            <h4>Phone</h4>
+        </div>
+        <div class="col-md-2">
+            <h4>Address</h4>
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-md-2">
+                @Html.DisplayTextFor(itemModel => item.FirstName)
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayTextFor(itemModel => item.LastName)
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayTextFor(itemModel => item.Login)
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayTextFor(itemModel => item.Email)
+            </div>
+            <div class="col-md-1">
+                @Html.DisplayTextFor(itemModel => item.Phone)
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayTextFor(itemModel => item.Address)
+            </div>
+            <div class="col-md-1">
+                @Html.ActionLink("Edit", "Edit", new {Id = item.Id}, new {@class = "btn"})
+                @Html.ActionLink("Delete", "Edit", new {Id = item.Id}, new {@class = "btn"})
+            </div>
+        </div>
+    }
+    @*@Html.ActionLink("Add", "Add", null, new {@class="btn btn-default modal-link"})*@
+    @Html.ActionLink("Add", "Add", null, new { @class = "btn btn-default modal-link" })
+</div>
+<div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-content modal-dialog">
+    </div>
+</div>
+
+<script type="text/javascript">
+        $(function () {
+            $('body').on('click', '.modal-link', function (e) {
+                e.preventDefault();
+                $(this).attr('data-target', '#modal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+            //clear modal cache, so that new content can be loaded
+            $('#modal-container').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+        });
+        //$(function () {
+        //    $.ajaxSetup({ cache: false });
+        //    $(".modal-link").click(function (e) {
+        //        e.preventDefault();
+        //        $.get(this.href, function (data) {
+        //            $('.modal-content').html(data);
+        //            $('#modal-container').modal('show');
+        //        });
+        //    });
+        //})
+</script>

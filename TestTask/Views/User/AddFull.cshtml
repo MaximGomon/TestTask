@@ -1,0 +1,58 @@
+﻿@model TestTask.Models.UserModel
+@{
+    ViewBag.Title = "List of user";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ Html.EnableClientValidation(true); }
+@{ Html.EnableUnobtrusiveJavaScript();}
+
+@using (Html.BeginForm("Add", "User"))
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Id)
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(x => x.FirstName, new { @class = "control-label col-md-4" })
+                @Html.EditorFor(x => x.FirstName, new { @class = "col-md-4" })
+                @Html.ValidationMessageFor(x => x.FirstName,"", new { @class = "control-label col-md-2" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(x => x.LastName)
+                @Html.TextBoxFor(x => x.LastName)
+                @Html.ValidationMessageFor(x => x.LastName)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(x => x.Login)
+                @Html.EditorFor(x => x.Login)
+                @Html.ValidationMessageFor(x => x.Login)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(x => x.Email)
+                @Html.TextBoxFor(x => x.Email)
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(x => x.Phone)
+                @Html.TextBoxFor(x => x.Phone)
+                @Html.ValidationMessageFor(x => x.Phone)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(x => x.Address)
+                @Html.TextBoxFor(x => x.Address)
+                @Html.ValidationMessageFor(x => x.Address)
+            </div>
+        </div>
+}
+<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+@Html.ActionLink("Save", "Add", null, htmlAttributes: new { @class = "btn-default btn" })

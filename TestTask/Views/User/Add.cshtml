@@ -1,0 +1,91 @@
+﻿@model TestTask.Models.UserModel
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">Create new user</h4>
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script>
+    $(function() {
+        $('.btSave').click(function() {
+            alert(form.serialize());
+            $.ajax({
+                url: "/User/Add",
+                method: "post",
+                data: $(this).serialize(),
+                succsess: function(data) {
+                    alert(data);
+                },
+            });
+            return false;
+        });
+    });
+</script>
+<div class="text-danger col-md-12" id="result"></div>
+@{ Html.EnableClientValidation(true); }
+@{ Html.EnableUnobtrusiveJavaScript();}
+
+    @using (Ajax.BeginForm("Add", "User", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "result"
+    }))
+    {
+        <div class="modal-body" id="modal">
+            @Html.ValidationSummary(true)
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.Id)
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(x => x.FirstName, new { @class = "control-label col-md-4" })
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "col-md-4" })
+                    @Html.ValidationMessageFor(x => x.FirstName, "", new { @class = "text-danger col-md-4" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(x => x.LastName, new { @class = "control-label col-md-4" })
+                    @Html.TextBoxFor(x => x.LastName, new { @class = "col-md-4" })
+                    @Html.ValidationMessageFor(x => x.LastName, "", new { @class = "text-danger col-md-4" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(x => x.Login, new { @class = "control-label col-md-4" })
+                    @Html.TextBoxFor(x => x.Login, new { @class = "col-md-4" })
+                    @Html.ValidationMessageFor(x => x.Login, "", new { @class = "text-danger col-md-4" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(x => x.Email, new { @class = "control-label col-md-4" })
+                    @Html.TextBoxFor(x => x.Email, new { @class = "col-md-4" })
+                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger col-md-4" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(x => x.Phone, new { @class = "control-label col-md-4" })
+                    @Html.TextBoxFor(x => x.Phone, new { @class = "col-md-4" })
+                    @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger col-md-4" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(x => x.Address, new { @class = "control-label col-md-4" })
+                    @Html.TextBoxFor(x => x.Address, new { @class = "col-md-4" })
+                    @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger col-md-4" })
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-default">Save</button>
+
+            @*@Html.ActionLink("Save", "Add", null, htmlAttributes: new { @class = "btn-default btn" })*@
+        </div>
+    }
