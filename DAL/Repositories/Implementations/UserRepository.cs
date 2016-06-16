@@ -18,7 +18,7 @@ namespace DAL.Repositories.Implementations
 
         public IQueryable<User> GetUsersPerPage(int pageNumber, int pageSize)
         {
-            return _context.Users.Skip(pageNumber*pageSize).Take(pageSize);
+            return _context.Users.OrderBy(x => x.Id).Skip(pageNumber*pageSize).Take(pageSize);
         }
 
         public void Update(User user)
