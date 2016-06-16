@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTask", "TestTask\TestTask.csproj", "{257958C3-F8B1-4F73-A7C3-916A66CD8839}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{FDB8E29B-319D-4458-9A36-1484664A44A0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{257958C3-F8B1-4F73-A7C3-916A66CD8839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{257958C3-F8B1-4F73-A7C3-916A66CD8839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{257958C3-F8B1-4F73-A7C3-916A66CD8839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{257958C3-F8B1-4F73-A7C3-916A66CD8839}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDB8E29B-319D-4458-9A36-1484664A44A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDB8E29B-319D-4458-9A36-1484664A44A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDB8E29B-319D-4458-9A36-1484664A44A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDB8E29B-319D-4458-9A36-1484664A44A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
