@@ -8,7 +8,7 @@ namespace TestTask.Controllers
 {
     public class UserController : Controller
     {
-        // GET: User
+        [HttpGet]
         public ActionResult List()
         {
             return View();
