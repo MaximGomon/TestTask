@@ -56,9 +56,12 @@
                 @Html.DisplayTextFor(itemModel => item.Address)
             </div>
             <div class="col-md-1">
-                @Html.ActionLink("Edit", "Edit", new {userId = item.Id}, new {@class = "btn btn-default form-control modal-link" })
-                @Html.ActionLink("Delete", "Delete", new {userId = item.Id}, new {@class = "btn btn-default form-control" })
+                @Html.ActionLink("Edit", "Edit", new {userId = item.Id}, new {@class = "btn btn-default form-control modal-link"})
+                @Html.ActionLink("Delete", "Delete", new {userId = item.Id}, new {@class = "btn btn-default form-control"})
             </div>
+        </div>
+        <div class="body-content">
+            <hr />
         </div>
     }
     <div class="body-content">
@@ -69,30 +72,27 @@
         <div class="col-md-6">
             @Html.ActionLink("Create new user", "Add", null, new { @class = "btn btn-default modal-link" })
         </div>
-        <div class="col-md-2 col-md-offset-4">
+        <div class="col-md-3 col-md-offset-3 text-right">
                 @Html.PagedListPager(Model, pageNumber => Url.Action("List", "User", new { pageNumber = pageNumber }))
         </div>
     </div>
     
 </div>
 <div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-content modal-dialog">
+    <div id="modal-dialog" class="modal-content modal-dialog">
     </div>
 </div>
 
 <script type="text/javascript">
     $(function () {
         $.ajaxSetup({ cache: false });
-            $('body').on('click', '.modal-link', function (e) {
-                e.preventDefault();
-                $(this).attr('data-target', '#modal-container');
-                $(this).attr('data-toggle', 'modal');
-                $(this).attr('data-cache', 'false');
-            });
-            //clear modal cache, so that new content can be loaded
-            $('#modal-container').on('hidden.bs.modal', function () {
-                $(this).removeData('bs.modal');
-                $(this).modal({ remote: $(this).attr('href') });
+        $(".modal-link").click(function (e) {
+
+            e.preventDefault();
+            $.get(this.href, function (data) {
+                $('#modal-dialog').html(data);
+                $('#modal-container').modal('show');
             });
         });
+    })
 </script>

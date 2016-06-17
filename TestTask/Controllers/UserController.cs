@@ -58,7 +58,7 @@ namespace TestTask.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(Guid userId)
+        public ActionResult Edit(Guid userId) 
         {
             var user = _repository.GetUserById(userId);
             return PartialView("Add", user.ToModel());

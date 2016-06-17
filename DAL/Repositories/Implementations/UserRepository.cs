@@ -33,7 +33,7 @@ namespace DAL.Repositories.Implementations
 
         public void Update(User user)
         {
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Users.AddOrUpdate(user);
         }
 
         public User GetUserById(Guid id)
