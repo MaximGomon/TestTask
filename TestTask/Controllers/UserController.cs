@@ -15,9 +15,9 @@ namespace TestTask.Controllers
     public class UserController : Controller
     {
         private readonly IUserRepository _repository;
-        public UserController()
+        public UserController(IUserRepository repository)
         {
-            _repository = new UserRepository(new UserDbContext());
+            _repository = repository;
         }
 
         [HttpGet]
@@ -34,9 +34,10 @@ namespace TestTask.Controllers
             {
                 var user = userModel.ToDbEntity();
                 _repository.AddUser(user);
+                _repository.Save();
                 return RedirectToAction("List");
             }
-            return Json("Form validation error"); //Json("Form validation error"); //PartialView("Add", userModel);
+            return Json("Form validation error");//PartialView("Add", userModel);
         }
 
         [HttpGet]
@@ -53,6 +54,7 @@ namespace TestTask.Controllers
             {
                 var user = userModel.ToDbEntity();
                 _repository.Update(user);
+                _repository.Save();
                 return RedirectToAction("List");
             }
             return PartialView("Add");
@@ -69,6 +71,7 @@ namespace TestTask.Controllers
         public ActionResult Delete(Guid userId)
         {
             _repository.DeleteUserById(userId);
+            _repository.Save();
             return View("List");
         }
 
