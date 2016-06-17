@@ -8,6 +8,7 @@ using DAL.Entities;
 using DAL.Repositories.Implementations;
 using DAL.Repositories.Interfaces;
 using Microsoft.Ajax.Utilities;
+using PagedList;
 using TestTask.Models;
 
 namespace TestTask.Controllers
@@ -23,19 +24,28 @@ namespace TestTask.Controllers
         [HttpGet]
         public ActionResult List(int pageNumber = 1, int pageSize = 5)
         {
-            var users = _repository.GetUsersPerPage(pageNumber, pageSize).ToList().ToModelList();
-            return View(users);
+            //var users = _repository.GetUsersPerPage(pageNumber, pageSize).ToList().ToModelList();
+            //return View(users.ToPagedList(pageNumber, pageSize));
+            return View(_repository.GetAllUsers().ToModelList().ToPagedList(pageNumber, pageSize));
         }
 
         [HttpPost]
-        public ActionResult Add(UserModel userModel)
+        public ActionResult AddOrUpdate(UserModel userModel)
         {
             if (Validate(userModel) && ModelState.IsValid)
             {
                 var user = userModel.ToDbEntity();
-                _repository.AddUser(user);
+                if (!_repository.Exists(user.Id))
+                {
+                    _repository.AddUser(user);
+                }
+                else
+                {
+                    _repository.Update(user);
+                }
                 _repository.Save();
-                return RedirectToAction("List");
+                return Content("<script>window.location.reload();</script>");
+                //return RedirectToAction("List");
             }
             return Json("Form validation error");//PartialView("Add", userModel);
         }
@@ -45,19 +55,6 @@ namespace TestTask.Controllers
         {
             var user = new User();
             return View(user.ToModel());
-        }
-
-        [HttpPost]
-        public ActionResult Save(UserModel userModel)
-        {
-            if (Validate(userModel) && ModelState.IsValid)
-            {
-                var user = userModel.ToDbEntity();
-                _repository.Update(user);
-                _repository.Save();
-                return RedirectToAction("List");
-            }
-            return PartialView("Add");
         }
 
         [HttpGet]
@@ -72,7 +69,7 @@ namespace TestTask.Controllers
         {
             _repository.DeleteUserById(userId);
             _repository.Save();
-            return View("List");
+            return RedirectToAction("List");
         }
 
         private bool Validate(UserModel userModel)

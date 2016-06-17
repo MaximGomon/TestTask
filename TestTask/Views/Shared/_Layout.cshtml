@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+<head>    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
@@ -8,9 +8,11 @@
         @Scripts.Render("~/Scripts/jquery.validate.js")
         @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.js")
     @Scripts.Render("~/Scripts/bootstrap.js")
-    @Scripts.Render("~/Scripts/less-1.5.1.js")
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    @Styles.Render("~/Content/bootstrap.css")
+    @*@Scripts.Render("~/Scripts/less-1.5.1.js")*@
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>   
+    <link rel="stylesheet/less" type="text/css" href="~/Content/Site.less">   
+    <script src="~/Scripts/less-1.5.1.js"></script>  
+    @*@Styles.Render("~/Content/bootstrap.css")*@
 </head>
 <body>
     <nav class="navbar navbar-default" style="background-color: deepskyblue;" >
@@ -22,10 +24,10 @@
     </nav>
 <div class="container body-content form-horizontal">
     @RenderBody()
-
-    <footer class="footer navbar-fixed-bottom">
-        <hr/>
-        <h3>Test task</h3>
+    <footer class="footer navbar-fixed-bottom text-right" style="background-color: whitesmoke">
+        <div class="container-fluid">
+            <h4>Test task</h4>
+        </div>
     </footer>
 </div>
 @RenderSection("scripts", required: false)

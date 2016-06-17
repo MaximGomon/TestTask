@@ -1,34 +1,18 @@
 ﻿@model TestTask.Models.UserModel
 
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="myModalLabel">Create new user</h4>
-</div>
+
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-@*<script>
-    $(function() {
-        $('.btSave').click(function() {
-            alert(form.serialize());
-            $.ajax({
-                url: "/User/Add",
-                method: "post",
-                data: $(this).serialize(),
-                succsess: function(data) {
-                    alert(data);
-                },
-            });
-            return false;
-        });
-    });
-</script>*@
 <div class="text-danger col-md-12" id="result"></div>
 @{ Html.EnableClientValidation(true); }
 @{ Html.EnableUnobtrusiveJavaScript();}
-
-    @using (Ajax.BeginForm("Add", "User", new AjaxOptions
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">User form</h4>
+</div>
+    @using (Ajax.BeginForm("AddOrUpdate", "User", new AjaxOptions
     {
         HttpMethod = "POST",
         UpdateTargetId = "result"

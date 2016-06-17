@@ -10,12 +10,12 @@ namespace TestTask
 {
     public static class Helper
     {
-        public static List<UserModel> ToModelList(this List<User> users)
+        public static IQueryable<UserModel> ToModelList(this IQueryable<User> users)
         {
             Mapper.Initialize(cfg => {
                 cfg.CreateMap<User, UserModel>();
             });
-            return users.Select(Mapper.Map<UserModel>).ToList();
+            return users.Select(Mapper.Map<UserModel>).AsQueryable();
         }
 
         public static UserModel ToModel(this User user)
