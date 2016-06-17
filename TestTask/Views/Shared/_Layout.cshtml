@@ -13,16 +13,21 @@
     @Styles.Render("~/Content/bootstrap.css")
 </head>
 <body>
+    <nav class="navbar navbar-default" style="background-color: deepskyblue;" >
+        <div class="container-fluid">
+            <h2>
+            User manager
+            </h2>
+        </div>
+    </nav>
 <div class="container body-content form-horizontal">
-    <header>
-        
-    </header>
     @RenderBody()
-    <hr/>
-    <footer>
-        Test task
+
+    <footer class="footer navbar-fixed-bottom">
+        <hr/>
+        <h3>Test task</h3>
     </footer>
 </div>
-    @RenderSection("scripts", required: false)
+@RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,2 +1,4 @@
-DAL/obj/Debug/DAL.csproj.FileListAbsolute.txt
 TestTask/bin/
+*.txt
+TestTask/packages/
+packages/
